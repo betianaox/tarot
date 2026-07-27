@@ -1,3 +1,4 @@
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
@@ -84,10 +85,12 @@ export default function HomeScreen({ navigation }: Props) {
 
         <View style={styles.botonera}>
           <Pressable style={styles.boton} onPress={onPresionarPregunta}>
+            <MaterialCommunityIcons name="crystal-ball" size={22} color={MARFIL} />
             <Text style={styles.botonTexto}>{t.home.pregunta}</Text>
           </Pressable>
 
           <Pressable style={styles.boton} onPress={() => navigation.navigate('Wiki')}>
+            <MaterialCommunityIcons name="book-open-variant" size={22} color={MARFIL} />
             <Text style={styles.botonTexto}>{t.home.wiki}</Text>
           </Pressable>
 
@@ -95,6 +98,7 @@ export default function HomeScreen({ navigation }: Props) {
             style={styles.boton}
             onPress={() => navigation.navigate('ConsejoDelDia')}
           >
+            <MaterialCommunityIcons name="lightbulb-on-outline" size={22} color={MARFIL} />
             <Text style={styles.botonTexto}>{t.home.consejoDelDia}</Text>
           </Pressable>
         </View>
@@ -201,7 +205,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(201, 162, 39, 0.9)',
     paddingVertical: 18,
+    flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
+    gap: 10,
   },
   botonTexto: {
     color: MARFIL,

@@ -67,7 +67,7 @@ export interface Textos {
 const es: Textos = {
   home: {
     pregunta: 'Pregunta',
-    wiki: 'Wiki',
+    wiki: 'Aprende',
     consejoDelDia: 'Consejo del día',
     bienvenidoTitulo: 'Bienvenido a Tarot',
     bienvenidoPregunta: '¿Cómo te llamas?',
@@ -85,7 +85,7 @@ const es: Textos = {
     hintCorta: 'Escribe una pregunta un poco más larga para poder leerla.',
   },
   wiki: {
-    titulo: 'Wiki',
+    titulo: 'Aprende Tarot',
     volver: 'Volver',
     enConstruccion: 'Aquí vas a aprender cada carta y su significado. Muy pronto.',
     arcanosMayores: 'Arcanos Mayores',
@@ -132,7 +132,7 @@ const es: Textos = {
 const en: Textos = {
   home: {
     pregunta: 'Ask a question',
-    wiki: 'Wiki',
+    wiki: 'Learn',
     consejoDelDia: 'Daily advice',
     bienvenidoTitulo: 'Welcome to Tarot',
     bienvenidoPregunta: "What's your name?",
@@ -150,7 +150,7 @@ const en: Textos = {
     hintCorta: 'Write a slightly longer question so we can read it.',
   },
   wiki: {
-    titulo: 'Wiki',
+    titulo: 'Learn Tarot',
     volver: 'Back',
     enConstruccion: "Here you'll learn every card and its meaning. Coming soon.",
     arcanosMayores: 'Major Arcana',
@@ -197,7 +197,7 @@ const en: Textos = {
 const pt: Textos = {
   home: {
     pregunta: 'Fazer uma pergunta',
-    wiki: 'Wiki',
+    wiki: 'Aprenda',
     consejoDelDia: 'Conselho do dia',
     bienvenidoTitulo: 'Bem-vindo ao Tarot',
     bienvenidoPregunta: 'Como você se chama?',
@@ -215,7 +215,7 @@ const pt: Textos = {
     hintCorta: 'Escreva uma pergunta um pouco mais longa para podermos lê-la.',
   },
   wiki: {
-    titulo: 'Wiki',
+    titulo: 'Aprenda Tarot',
     volver: 'Voltar',
     enConstruccion: 'Aqui você vai aprender cada carta e seu significado. Em breve.',
     arcanosMayores: 'Arcanos Maiores',
@@ -262,7 +262,7 @@ const pt: Textos = {
 const it: Textos = {
   home: {
     pregunta: 'Fai una domanda',
-    wiki: 'Wiki',
+    wiki: 'Impara',
     consejoDelDia: 'Consiglio del giorno',
     bienvenidoTitulo: 'Benvenuto in Tarot',
     bienvenidoPregunta: 'Come ti chiami?',
@@ -280,7 +280,7 @@ const it: Textos = {
     hintCorta: "Scrivi una domanda un po' più lunga per poterla leggere.",
   },
   wiki: {
-    titulo: 'Wiki',
+    titulo: 'Impara i Tarocchi',
     volver: 'Indietro',
     enConstruccion: 'Qui imparerai ogni carta e il suo significato. Presto disponibile.',
     arcanosMayores: 'Arcani Maggiori',
