@@ -1,7 +1,8 @@
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import BotonCerrar from '../components/BotonCerrar';
 import MarcoDorado from '../components/MarcoDorado';
 import { useTextos } from '../hooks/useTextos';
 import type { RootStackParamList } from '../navigation/types';
@@ -10,8 +11,8 @@ type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Pregunta'>;
 };
 
-// Stub de Fase 1: la tirada (con su estética de cartas y el motor de lectura)
-// se construye en la Fase 3, sobre el modelo de las 78 cartas de la Fase 2.
+// Stub: la tirada propia (cruz de 5 cartas con animación y lectura en otra
+// pantalla) se construye a continuación.
 export default function PreguntaScreen({ navigation }: Props) {
   const t = useTextos();
 
@@ -19,13 +20,13 @@ export default function PreguntaScreen({ navigation }: Props) {
     <View style={styles.background}>
       <MarcoDorado />
       <SafeAreaView style={styles.safeArea}>
+        <View style={styles.encabezado}>
+          <BotonCerrar onPress={() => navigation.goBack()} />
+        </View>
         <View style={styles.contenido}>
           <Text style={styles.titulo}>{t.pregunta.titulo}</Text>
           <Text style={styles.texto}>Muy pronto vas a poder hacer tu tirada aquí.</Text>
         </View>
-        <Pressable style={styles.botonVolver} onPress={() => navigation.goBack()}>
-          <Text style={styles.botonVolverTexto}>{t.consejoDelDia.volver}</Text>
-        </Pressable>
       </SafeAreaView>
     </View>
   );
@@ -41,6 +42,11 @@ const styles = StyleSheet.create({
     paddingTop: 14,
     paddingBottom: 14,
     paddingHorizontal: 32,
+  },
+  encabezado: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    paddingTop: 6,
   },
   contenido: {
     flex: 1,
@@ -59,20 +65,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     textAlign: 'center',
-  },
-  botonVolver: {
-    alignSelf: 'center',
-    borderRadius: 14,
-    borderWidth: 1,
-    borderColor: 'rgba(201, 162, 39, 0.9)',
-    backgroundColor: 'rgba(15, 10, 4, 0.5)',
-    paddingVertical: 14,
-    paddingHorizontal: 32,
-    marginBottom: 8,
-  },
-  botonVolverTexto: {
-    color: '#F5EFE0',
-    fontSize: 16,
-    fontWeight: '600',
   },
 });

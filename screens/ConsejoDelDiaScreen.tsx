@@ -1,7 +1,8 @@
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import BotonCerrar from '../components/BotonCerrar';
 import MarcoDorado from '../components/MarcoDorado';
 import { useTextos } from '../hooks/useTextos';
 import type { RootStackParamList } from '../navigation/types';
@@ -10,8 +11,8 @@ type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'ConsejoDelDia'>;
 };
 
-// Stub de Fase 1: el Consejo del día (una carta diaria, gratis y persistida por
-// fecha como en Runas) se construye en la Fase 3, sobre el modelo de la Fase 2.
+// Stub: el Consejo del día (tres cartas boca abajo, elegir una, animación de
+// dar vuelta y mostrarla grande con su consejo) se construye a continuación.
 export default function ConsejoDelDiaScreen({ navigation }: Props) {
   const t = useTextos();
 
@@ -19,13 +20,13 @@ export default function ConsejoDelDiaScreen({ navigation }: Props) {
     <View style={styles.background}>
       <MarcoDorado />
       <SafeAreaView style={styles.safeArea}>
+        <View style={styles.encabezado}>
+          <BotonCerrar onPress={() => navigation.goBack()} />
+        </View>
         <View style={styles.contenido}>
           <Text style={styles.titulo}>{t.consejoDelDia.titulo}</Text>
           <Text style={styles.texto}>Tu carta del día te espera. Muy pronto.</Text>
         </View>
-        <Pressable style={styles.botonVolver} onPress={() => navigation.goBack()}>
-          <Text style={styles.botonVolverTexto}>{t.consejoDelDia.volver}</Text>
-        </Pressable>
       </SafeAreaView>
     </View>
   );
@@ -41,6 +42,11 @@ const styles = StyleSheet.create({
     paddingTop: 14,
     paddingBottom: 14,
     paddingHorizontal: 32,
+  },
+  encabezado: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    paddingTop: 6,
   },
   contenido: {
     flex: 1,
@@ -59,20 +65,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     textAlign: 'center',
-  },
-  botonVolver: {
-    alignSelf: 'center',
-    borderRadius: 14,
-    borderWidth: 1,
-    borderColor: 'rgba(201, 162, 39, 0.9)',
-    backgroundColor: 'rgba(15, 10, 4, 0.5)',
-    paddingVertical: 14,
-    paddingHorizontal: 32,
-    marginBottom: 8,
-  },
-  botonVolverTexto: {
-    color: '#F5EFE0',
-    fontSize: 16,
-    fontWeight: '600',
   },
 });

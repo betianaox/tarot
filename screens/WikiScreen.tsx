@@ -2,6 +2,7 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import BotonCerrar from '../components/BotonCerrar';
 import CartaImagen from '../components/CartaImagen';
 import MarcoDorado from '../components/MarcoDorado';
 import { CARTAS } from '../content/cartas/meta';
@@ -60,9 +61,7 @@ export default function WikiScreen({ navigation }: Props) {
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.encabezado}>
           <Text style={styles.titulo}>{t.wiki.titulo}</Text>
-          <Pressable style={styles.botonCerrar} onPress={() => navigation.goBack()} hitSlop={12}>
-            <Text style={styles.botonCerrarTexto}>✕</Text>
-          </Pressable>
+          <BotonCerrar onPress={() => navigation.goBack()} />
         </View>
 
         <ScrollView contentContainerStyle={styles.scroll}>
@@ -98,19 +97,6 @@ const styles = StyleSheet.create({
   titulo: {
     color: '#F5EFE0',
     fontSize: 24,
-    fontWeight: '700',
-  },
-  botonCerrar: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: 'rgba(255, 255, 255, 0.12)',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  botonCerrarTexto: {
-    color: '#fff',
-    fontSize: 16,
     fontWeight: '700',
   },
   scroll: {

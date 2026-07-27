@@ -1,8 +1,9 @@
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { RouteProp } from '@react-navigation/native';
-import { Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import BotonCerrar from '../components/BotonCerrar';
 import CartaImagen from '../components/CartaImagen';
 import MarcoDorado from '../components/MarcoDorado';
 import { CARTA_POR_ID } from '../content/cartas/meta';
@@ -33,9 +34,7 @@ export default function WikiDetalleScreen({ navigation, route }: Props) {
       <MarcoDorado />
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.encabezado}>
-          <Pressable style={styles.botonVolver} onPress={() => navigation.goBack()} hitSlop={12}>
-            <Text style={styles.botonVolverTexto}>‹ {t.wiki.volver}</Text>
-          </Pressable>
+          <BotonCerrar onPress={() => navigation.goBack()} />
         </View>
 
         <ScrollView contentContainerStyle={styles.scroll}>
@@ -118,17 +117,9 @@ const styles = StyleSheet.create({
   encabezado: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'flex-end',
     paddingHorizontal: 24,
     paddingTop: 6,
-  },
-  botonVolver: {
-    paddingVertical: 4,
-    paddingRight: 12,
-  },
-  botonVolverTexto: {
-    color: '#D9B94A',
-    fontSize: 16,
-    fontWeight: '600',
   },
   scroll: {
     paddingHorizontal: 28,
