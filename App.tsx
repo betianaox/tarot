@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Asset } from 'expo-asset';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+import * as SystemUI from 'expo-system-ui';
 import { useCallback, useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { View } from 'react-native';
@@ -43,6 +44,15 @@ export default function App() {
   });
 
   useEffect(() => {
+    // Fondo nativo de la ventana en bordó: es lo que se ve detrás de la barra
+    // de Android (transparente en edge-to-edge), para que quede oscura. En el
+    // dev client actual el módulo nativo todavía no está (se agrega en el build),
+    // así que se protege con try/catch para no romper.
+    try {
+      SystemUI.setBackgroundColorAsync(COLORES.fondo).catch(() => {});
+    } catch {
+      // módulo nativo ausente en el dev client
+    }
     Asset.loadAsync(require('./assets/bg-home.webp'))
       .catch(() => {})
       .finally(() => setAssetsListos(true));

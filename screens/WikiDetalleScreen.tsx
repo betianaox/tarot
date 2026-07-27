@@ -7,6 +7,7 @@ import BotonCerrar from '../components/BotonCerrar';
 import CartaImagen from '../components/CartaImagen';
 import MarcoDorado from '../components/MarcoDorado';
 import { COLORES } from '../constants/colores';
+import { LAYOUT } from '../constants/layout';
 import { CARTA_POR_ID } from '../content/cartas/meta';
 import { useCartas } from '../hooks/useCartas';
 import { useTextos } from '../hooks/useTextos';
@@ -112,18 +113,17 @@ const styles = StyleSheet.create({
   },
   safeArea: {
     flex: 1,
-    paddingTop: 14,
+    paddingTop: LAYOUT.aireTop,
     paddingBottom: 14,
   },
   encabezado: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    paddingHorizontal: 24,
-    paddingTop: 6,
+    paddingHorizontal: LAYOUT.aire,
   },
   scroll: {
-    paddingHorizontal: 28,
+    paddingHorizontal: LAYOUT.aire,
     paddingTop: 8,
     paddingBottom: 32,
   },
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     gap: 14,
   },
   nombre: {
-    color: '#F5EFE0',
+    color: COLORES.marfil,
     fontSize: 26,
     fontWeight: '700',
     textAlign: 'center',
@@ -149,13 +149,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   datoEtiqueta: {
-    color: '#D9B94A',
+    color: COLORES.oroClaro,
     fontSize: 12,
     textTransform: 'uppercase',
     letterSpacing: 0.5,
   },
   datoValor: {
-    color: '#F5EFE0',
+    color: COLORES.marfil,
     fontSize: 16,
     fontWeight: '600',
     marginTop: 2,
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     marginTop: 24,
   },
   seccionTitulo: {
-    color: '#D9B94A',
+    color: COLORES.oroClaro,
     fontSize: 14,
     fontWeight: '700',
     textTransform: 'uppercase',

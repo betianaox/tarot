@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import BotonCerrar from '../components/BotonCerrar';
 import MarcoDorado from '../components/MarcoDorado';
 import { COLORES } from '../constants/colores';
+import { LAYOUT } from '../constants/layout';
 import { useTextos } from '../hooks/useTextos';
 import type { RootStackParamList } from '../navigation/types';
 
@@ -40,14 +41,13 @@ const styles = StyleSheet.create({
   },
   safeArea: {
     flex: 1,
-    paddingTop: 14,
-    paddingBottom: 14,
-    paddingHorizontal: 32,
+    paddingTop: LAYOUT.aireTop,
+    paddingBottom: LAYOUT.aireTop,
+    paddingHorizontal: LAYOUT.aire,
   },
   encabezado: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    paddingTop: 6,
   },
   contenido: {
     flex: 1,
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     gap: 18,
   },
   titulo: {
-    color: '#F5EFE0',
+    color: COLORES.marfil,
     fontSize: 30,
     fontWeight: '700',
     textAlign: 'center',

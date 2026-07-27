@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
   },
   botonera: {
     paddingHorizontal: 24,
-    paddingBottom: 12,
+    paddingBottom: 26,
     gap: 14,
   },
   boton: {

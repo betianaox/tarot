@@ -6,6 +6,7 @@ import BotonCerrar from '../components/BotonCerrar';
 import CartaImagen from '../components/CartaImagen';
 import MarcoDorado from '../components/MarcoDorado';
 import { COLORES } from '../constants/colores';
+import { LAYOUT } from '../constants/layout';
 import { CARTAS } from '../content/cartas/meta';
 import type { CartaMeta, Palo } from '../content/types';
 import { useCartas } from '../hooks/useCartas';
@@ -18,7 +19,7 @@ type Props = {
 };
 
 const COLUMNAS = 3;
-const PADDING = 24;
+const PADDING = LAYOUT.aire;
 const GAP = 12;
 const PALOS: Palo[] = ['bastos', 'copas', 'espadas', 'oros'];
 
@@ -27,9 +28,10 @@ export default function WikiScreen({ navigation }: Props) {
   const { nombres, wiki } = useCartas();
   const { width } = useWindowDimensions();
 
-  // Ancho de cada miniatura para una grilla de 3 columnas. Queda bien por
-  // debajo del ancho nativo del arte (480 px), así que nunca se agranda.
-  const anchoItem = (width - PADDING * 2 - GAP * (COLUMNAS - 1)) / COLUMNAS;
+  // Ancho de cada miniatura para una grilla de SIEMPRE 3 columnas, en cualquier
+  // resolución. Math.floor deja unos px de holgura para que la suma de las 3 +
+  // los gaps nunca supere el contenedor por redondeo (si no, la 3ª se va abajo).
+  const anchoItem = Math.floor((width - PADDING * 2 - GAP * (COLUMNAS - 1)) / COLUMNAS);
 
   const mayores = CARTAS.filter((c) => c.arcano === 'mayor');
   const secciones: { titulo: string; cartas: CartaMeta[] }[] = [
@@ -85,18 +87,17 @@ const styles = StyleSheet.create({
   },
   safeArea: {
     flex: 1,
-    paddingTop: 18,
+    paddingTop: LAYOUT.aireTop,
     paddingBottom: 14,
   },
   encabezado: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 30,
-    paddingTop: 10,
+    paddingHorizontal: LAYOUT.aire,
   },
   titulo: {
-    color: '#F5EFE0',
+    color: COLORES.marfil,
     fontSize: 24,
     fontWeight: '700',
   },
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   seccionTitulo: {
-    color: '#D9B94A',
+    color: COLORES.oroClaro,
     fontSize: 14,
     fontWeight: '700',
     textTransform: 'uppercase',

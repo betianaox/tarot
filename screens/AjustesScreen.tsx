@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import BotonCerrar from '../components/BotonCerrar';
 import MarcoDorado from '../components/MarcoDorado';
 import { COLORES } from '../constants/colores';
+import { LAYOUT } from '../constants/layout';
 import { useIdioma, type Idioma } from '../context/IdiomaContext';
 import { useTextos } from '../hooks/useTextos';
 import type { RootStackParamList } from '../navigation/types';
@@ -70,29 +71,29 @@ const styles = StyleSheet.create({
   },
   safeArea: {
     flex: 1,
-    // Aire respecto del marco dorado, arriba y abajo.
-    paddingTop: 14,
-    paddingBottom: 14,
+    // Aire desde el marco dorado (consistente con las demás pantallas).
+    paddingTop: LAYOUT.aireTop,
+    paddingBottom: LAYOUT.aireTop,
   },
   encabezado: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 24,
-    paddingTop: 6,
+    paddingHorizontal: LAYOUT.aire,
   },
   titulo: {
-    color: '#F5EFE0',
+    color: COLORES.marfil,
     fontSize: 24,
     fontWeight: '700',
   },
   scroll: {
-    paddingHorizontal: 24,
-    paddingVertical: 24,
+    paddingHorizontal: LAYOUT.aire,
+    paddingTop: 20,
+    paddingBottom: 12,
     gap: 12,
   },
   seccionTitulo: {
-    color: '#D9B94A',
+    color: COLORES.oroClaro,
     fontSize: 14,
     fontWeight: '700',
     textTransform: 'uppercase',
