@@ -30,12 +30,9 @@ describe('baraja (CARTAS)', () => {
     expect(CARTA_POR_ID['oros-diez']).toMatchObject({ elemento: 'tierra', numero: 10 });
   });
 
-  it('las cartas dibujadas tienen imagen y las no dibujadas quedan en null', () => {
-    // 00–04 ya tienen arte.
-    expect(CARTA_POR_ID['mayor-00'].imagen).not.toBeNull();
-    expect(CARTA_POR_ID['mayor-04'].imagen).not.toBeNull();
-    // El resto todavía no.
-    expect(CARTA_POR_ID['mayor-05'].imagen).toBeNull();
-    expect(CARTA_POR_ID['oros-rey'].imagen).toBeNull();
+  it('las 78 cartas tienen su arte asignado', () => {
+    for (const carta of CARTAS) {
+      expect(carta.imagen).not.toBeNull();
+    }
   });
 });
