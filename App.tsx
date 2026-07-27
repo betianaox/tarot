@@ -16,6 +16,7 @@ import type { RootStackParamList } from './navigation/types';
 import AjustesScreen from './screens/AjustesScreen';
 import ConsejoDelDiaScreen from './screens/ConsejoDelDiaScreen';
 import HomeScreen from './screens/HomeScreen';
+import LecturaScreen from './screens/LecturaScreen';
 import PreguntaScreen from './screens/PreguntaScreen';
 import WikiScreen from './screens/WikiScreen';
 import WikiDetalleScreen from './screens/WikiDetalleScreen';
@@ -63,6 +64,7 @@ export default function App() {
                 <Stack.Navigator screenOptions={{ headerShown: false }}>
                   <Stack.Screen name="Home" component={HomeScreen} />
                   <Stack.Screen name="Pregunta" component={PreguntaScreen} />
+                  <Stack.Screen name="Lectura" component={LecturaScreen} />
                   <Stack.Screen name="Wiki" component={WikiScreen} />
                   <Stack.Screen name="WikiDetalle" component={WikiDetalleScreen} />
                   <Stack.Screen name="ConsejoDelDia" component={ConsejoDelDiaScreen} />
