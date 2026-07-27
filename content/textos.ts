@@ -54,6 +54,8 @@ export interface Textos {
   consejoDelDia: {
     titulo: string;
     volver: string;
+    elegir: string;
+    vuelveManana: string;
   };
   ajustes: {
     titulo: string;
@@ -115,6 +117,8 @@ const es: Textos = {
   consejoDelDia: {
     titulo: 'Consejo del día',
     volver: 'Volver',
+    elegir: 'Elige una carta para tu consejo de hoy',
+    vuelveManana: 'Vuelve mañana por tu próximo consejo',
   },
   ajustes: {
     titulo: 'Ajustes',
@@ -180,6 +184,8 @@ const en: Textos = {
   consejoDelDia: {
     titulo: 'Daily advice',
     volver: 'Back',
+    elegir: "Pick a card for today's advice",
+    vuelveManana: 'Come back tomorrow for your next advice',
   },
   ajustes: {
     titulo: 'Settings',
@@ -245,6 +251,8 @@ const pt: Textos = {
   consejoDelDia: {
     titulo: 'Conselho do dia',
     volver: 'Voltar',
+    elegir: 'Escolha uma carta para o conselho de hoje',
+    vuelveManana: 'Volte amanhã para o próximo conselho',
   },
   ajustes: {
     titulo: 'Configurações',
@@ -310,6 +318,8 @@ const it: Textos = {
   consejoDelDia: {
     titulo: 'Consiglio del giorno',
     volver: 'Indietro',
+    elegir: 'Scegli una carta per il consiglio di oggi',
+    vuelveManana: 'Torna domani per il prossimo consiglio',
   },
   ajustes: {
     titulo: 'Impostazioni',
