@@ -2,7 +2,7 @@
   "expo": {
     "name": "Tarot",
     "slug": "oraculos-tarot",
-    "owner": "imagosys",
+    "owner": "betianare",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -56,7 +56,7 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "0f6c76db-56b8-4740-a559-4cb061a67fa8"
+        "projectId": "e89cbcda-8d37-4b90-8cfe-b63987b13108"
       }
     }
   }
