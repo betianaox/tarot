@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import ContadorGemas from '../components/ContadorGemas';
 import OverlaySinGemas from '../components/OverlaySinGemas';
+import { COLORES } from '../constants/colores';
 import { FUENTE_TITULOS } from '../constants/tipografia';
 import { useGemas } from '../context/GemasContext';
 import { useUsuario } from '../context/UsuarioContext';
@@ -178,13 +179,13 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
     fontStyle: 'normal',
     color: MARFIL,
-    fontSize: 92,
+    fontSize: 112,
     textAlign: 'center',
     marginTop: 12,
-    // Contorno/halo oscuro para despegar el marfil del fondo cálido.
-    textShadowColor: 'rgba(0, 0, 0, 0.85)',
-    textShadowOffset: { width: 0, height: 2 },
-    textShadowRadius: 14,
+    // Halo bordó reforzado para despegar el marfil del fondo cálido.
+    textShadowColor: COLORES.bordo,
+    textShadowOffset: { width: 0, height: 3 },
+    textShadowRadius: 22,
   },
   espaciador: {
     flex: 1,
