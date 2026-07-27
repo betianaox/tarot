@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import BotonCerrar from '../components/BotonCerrar';
 import CartaImagen from '../components/CartaImagen';
 import MarcoDorado from '../components/MarcoDorado';
+import { COLORES } from '../constants/colores';
 import { CARTA_POR_ID } from '../content/cartas/meta';
 import { useCartas } from '../hooks/useCartas';
 import { useTextos } from '../hooks/useTextos';
@@ -107,7 +108,7 @@ function Seccion({ titulo, children }: { titulo: string; children: React.ReactNo
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: '#17100A',
+    backgroundColor: COLORES.fondo,
   },
   safeArea: {
     flex: 1,

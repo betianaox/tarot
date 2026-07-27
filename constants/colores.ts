@@ -1,7 +1,7 @@
 // Paleta central de Tarot. Usar estas constantes en vez de literales sueltos,
 // así el tema se ajusta desde un solo lugar y queda parejo entre pantallas.
 export const COLORES = {
-  fondo: '#17100A', // oscuro cálido de las pantallas de fondo plano
+  fondo: '#260E16', // fondo plano: bordó muy oscuro (emparentado con el dorso)
   marfil: '#F5EFE0', // títulos y texto principal
   oro: '#C9A227', // acento dorado (bordes de botones/cartas)
   oroClaro: '#D9B94A', // acento dorado claro (etiquetas de sección)

@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import BotonCerrar from '../components/BotonCerrar';
 import MarcoDorado from '../components/MarcoDorado';
+import { COLORES } from '../constants/colores';
 import { useTextos } from '../hooks/useTextos';
 import type { RootStackParamList } from '../navigation/types';
 
@@ -35,7 +36,7 @@ export default function ConsejoDelDiaScreen({ navigation }: Props) {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: '#17100A',
+    backgroundColor: COLORES.fondo,
   },
   safeArea: {
     flex: 1,

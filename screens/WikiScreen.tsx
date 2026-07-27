@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import BotonCerrar from '../components/BotonCerrar';
 import CartaImagen from '../components/CartaImagen';
 import MarcoDorado from '../components/MarcoDorado';
+import { COLORES } from '../constants/colores';
 import { CARTAS } from '../content/cartas/meta';
 import type { CartaMeta, Palo } from '../content/types';
 import { useCartas } from '../hooks/useCartas';
@@ -80,7 +81,7 @@ export default function WikiScreen({ navigation }: Props) {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: '#17100A',
+    backgroundColor: COLORES.fondo,
   },
   safeArea: {
     flex: 1,

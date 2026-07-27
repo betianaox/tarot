@@ -19,6 +19,10 @@
       "predictiveBackGestureEnabled": false,
       "package": "com.oraculos.tarot"
     },
+    "androidNavigationBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#260E16"
+    },
     "web": {
       "favicon": "./assets/favicon.png"
     },

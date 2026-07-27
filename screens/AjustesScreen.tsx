@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import BotonCerrar from '../components/BotonCerrar';
 import MarcoDorado from '../components/MarcoDorado';
+import { COLORES } from '../constants/colores';
 import { useIdioma, type Idioma } from '../context/IdiomaContext';
 import { useTextos } from '../hooks/useTextos';
 import type { RootStackParamList } from '../navigation/types';
@@ -64,9 +65,8 @@ export default function AjustesScreen({ navigation }: Props) {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    // Oscuro cálido (near-black con tinte marrón), la identidad de Tarot en
-    // las pantallas de fondo plano. El marco y los acentos dorados resaltan.
-    backgroundColor: '#17100A',
+    // Bordó muy oscuro (identidad de Tarot). El marco y los acentos dorados resaltan.
+    backgroundColor: COLORES.fondo,
   },
   safeArea: {
     flex: 1,

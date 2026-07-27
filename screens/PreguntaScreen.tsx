@@ -8,6 +8,7 @@ import CartaImagen from '../components/CartaImagen';
 import ContadorGemas from '../components/ContadorGemas';
 import MarcoDorado from '../components/MarcoDorado';
 import { COLORES } from '../constants/colores';
+import { LAYOUT } from '../constants/layout';
 import { CARTA_POR_ID } from '../content/cartas/meta';
 import { useTextos } from '../hooks/useTextos';
 import { tirarCruz, type CartaTirada } from '../lib/tirarCruz';
@@ -19,9 +20,9 @@ type Props = {
 
 // Relación alto/ancho del arte (480×860).
 const RATIO_H = 860 / 480;
-// Aire desde el marco dorado (pantalla con borde → más separación). Manda el
-// ancho: este valor define cuánto respiran las cartas desde el borde.
-const AIRE = 36;
+// Aire desde el marco dorado (compartido con las demás pantallas con borde).
+// Manda el ancho: define cuánto respiran las cartas desde el borde.
+const AIRE = LAYOUT.aire;
 // Alturas reservadas, en dp: encabezado (gemas/✕), pie (botones) y respiros.
 const ALTO_ENCABEZADO = 52;
 const ALTO_PIE = 66;
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
   },
   safeArea: {
     flex: 1,
-    paddingTop: 32,
+    paddingTop: LAYOUT.aireTop,
     paddingBottom: RESPIRO,
   },
   encabezado: {

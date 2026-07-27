@@ -1,4 +1,4 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { DarkTheme, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Asset } from 'expo-asset';
 import { useFonts } from 'expo-font';
@@ -8,6 +8,7 @@ import { StatusBar } from 'expo-status-bar';
 import { View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { COLORES } from './constants/colores';
 import { FUENTE_TITULOS } from './constants/tipografia';
 import { GemasProvider } from './context/GemasContext';
 import { IdiomaProvider } from './context/IdiomaContext';
@@ -24,6 +25,14 @@ import WikiDetalleScreen from './screens/WikiDetalleScreen';
 SplashScreen.preventAutoHideAsync();
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
+
+// Tema oscuro para la navegación: el fondo por defecto era blanco y se veía
+// detrás de la barra de Android (transparente en edge-to-edge de Expo 57),
+// dándole ese gris claro. Con el fondo bordó, la barra queda oscura.
+const TEMA_OSCURO = {
+  ...DarkTheme,
+  colors: { ...DarkTheme.colors, background: COLORES.fondo },
+};
 
 export default function App() {
   const [assetsListos, setAssetsListos] = useState(false);
@@ -59,8 +68,8 @@ export default function App() {
       <UsuarioProvider nombreInicial={nombreGuardado}>
         <IdiomaProvider>
           <GemasProvider>
-            <View style={{ flex: 1 }} onLayout={onLayout}>
-              <NavigationContainer>
+            <View style={{ flex: 1, backgroundColor: COLORES.fondo }} onLayout={onLayout}>
+              <NavigationContainer theme={TEMA_OSCURO}>
                 <Stack.Navigator screenOptions={{ headerShown: false }}>
                   <Stack.Screen name="Home" component={HomeScreen} />
                   <Stack.Screen name="Pregunta" component={PreguntaScreen} />
