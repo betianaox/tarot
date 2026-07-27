@@ -26,6 +26,15 @@ export interface Textos {
     titulo: string;
     volver: string;
     enConstruccion: string;
+    arcanosMayores: string;
+    palabrasClave: string;
+    derecho: string;
+    invertido: string;
+    simbolismo: string;
+    datos: string;
+    numero: string;
+    elemento: string;
+    proximamente: string;
   };
   overlaySinGemas: {
     titulo: string;
@@ -74,7 +83,16 @@ const es: Textos = {
   wiki: {
     titulo: 'Wiki',
     volver: 'Volver',
-    enConstruccion: 'Acá vas a aprender cada carta y su significado. Muy pronto.',
+    enConstruccion: 'Aquí vas a aprender cada carta y su significado. Muy pronto.',
+    arcanosMayores: 'Arcanos Mayores',
+    palabrasClave: 'Palabras clave',
+    derecho: 'Derecho',
+    invertido: 'Invertido',
+    simbolismo: 'Cómo leerla',
+    datos: 'Datos',
+    numero: 'Número',
+    elemento: 'Elemento',
+    proximamente: 'Contenido próximamente',
   },
   overlaySinGemas: {
     titulo: 'Te quedan 0 gemas',
@@ -129,6 +147,15 @@ const en: Textos = {
     titulo: 'Wiki',
     volver: 'Back',
     enConstruccion: "Here you'll learn every card and its meaning. Coming soon.",
+    arcanosMayores: 'Major Arcana',
+    palabrasClave: 'Keywords',
+    derecho: 'Upright',
+    invertido: 'Reversed',
+    simbolismo: 'How to read it',
+    datos: 'Details',
+    numero: 'Number',
+    elemento: 'Element',
+    proximamente: 'Content coming soon',
   },
   overlaySinGemas: {
     titulo: 'You have 0 gems left',
@@ -183,6 +210,15 @@ const pt: Textos = {
     titulo: 'Wiki',
     volver: 'Voltar',
     enConstruccion: 'Aqui você vai aprender cada carta e seu significado. Em breve.',
+    arcanosMayores: 'Arcanos Maiores',
+    palabrasClave: 'Palavras-chave',
+    derecho: 'Direita',
+    invertido: 'Invertida',
+    simbolismo: 'Como ler',
+    datos: 'Dados',
+    numero: 'Número',
+    elemento: 'Elemento',
+    proximamente: 'Conteúdo em breve',
   },
   overlaySinGemas: {
     titulo: 'Você tem 0 gemas',
@@ -237,6 +273,15 @@ const it: Textos = {
     titulo: 'Wiki',
     volver: 'Indietro',
     enConstruccion: 'Qui imparerai ogni carta e il suo significato. Presto disponibile.',
+    arcanosMayores: 'Arcani Maggiori',
+    palabrasClave: 'Parole chiave',
+    derecho: 'Dritto',
+    invertido: 'Rovesciata',
+    simbolismo: 'Come leggerla',
+    datos: 'Dati',
+    numero: 'Numero',
+    elemento: 'Elemento',
+    proximamente: 'Contenuto in arrivo',
   },
   overlaySinGemas: {
     titulo: 'Ti restano 0 gemme',

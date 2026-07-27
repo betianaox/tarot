@@ -1,0 +1,58 @@
+import type { NombresPack } from '../types';
+
+// Nombres de las cartas en español. Los Mayores son nombres canónicos; los
+// Menores se arman con rango + palo (ver lib/nombreCarta.ts).
+export const NOMBRES_ES: NombresPack = {
+  mayores: {
+    0: 'El Loco',
+    1: 'El Mago',
+    2: 'La Sacerdotisa',
+    3: 'La Emperatriz',
+    4: 'El Emperador',
+    5: 'El Hierofante',
+    6: 'Los Enamorados',
+    7: 'El Carro',
+    8: 'La Fuerza',
+    9: 'El Ermitaño',
+    10: 'La Rueda de la Fortuna',
+    11: 'La Justicia',
+    12: 'El Colgado',
+    13: 'La Muerte',
+    14: 'La Templanza',
+    15: 'El Diablo',
+    16: 'La Torre',
+    17: 'La Estrella',
+    18: 'La Luna',
+    19: 'El Sol',
+    20: 'El Juicio',
+    21: 'El Mundo',
+  },
+  palos: {
+    bastos: 'Bastos',
+    copas: 'Copas',
+    espadas: 'Espadas',
+    oros: 'Oros',
+  },
+  rangos: {
+    as: 'As',
+    dos: 'Dos',
+    tres: 'Tres',
+    cuatro: 'Cuatro',
+    cinco: 'Cinco',
+    seis: 'Seis',
+    siete: 'Siete',
+    ocho: 'Ocho',
+    nueve: 'Nueve',
+    diez: 'Diez',
+    sota: 'Sota',
+    caballo: 'Caballo',
+    reina: 'Reina',
+    rey: 'Rey',
+  },
+  elementos: {
+    fuego: 'Fuego',
+    agua: 'Agua',
+    aire: 'Aire',
+    tierra: 'Tierra',
+  },
+};

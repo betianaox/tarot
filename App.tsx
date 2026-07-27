@@ -18,6 +18,7 @@ import ConsejoDelDiaScreen from './screens/ConsejoDelDiaScreen';
 import HomeScreen from './screens/HomeScreen';
 import PreguntaScreen from './screens/PreguntaScreen';
 import WikiScreen from './screens/WikiScreen';
+import WikiDetalleScreen from './screens/WikiDetalleScreen';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -63,6 +64,7 @@ export default function App() {
                   <Stack.Screen name="Home" component={HomeScreen} />
                   <Stack.Screen name="Pregunta" component={PreguntaScreen} />
                   <Stack.Screen name="Wiki" component={WikiScreen} />
+                  <Stack.Screen name="WikiDetalle" component={WikiDetalleScreen} />
                   <Stack.Screen name="ConsejoDelDia" component={ConsejoDelDiaScreen} />
                   <Stack.Screen name="Ajustes" component={AjustesScreen} />
                 </Stack.Navigator>

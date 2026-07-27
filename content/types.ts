@@ -125,3 +125,14 @@ export type VariantesFragmento = [Fragmento, Fragmento, Fragmento];
 export type FragmentosDeTema = Partial<
   Record<CartaId, Record<Posicion, VariantesFragmento>>
 >;
+
+// ── Nombres y etiquetas de carta (por idioma) ──────────────────────────────
+// Permite mostrar el nombre de cualquiera de las 78 cartas aunque su ficha Wiki
+// no esté escrita: los Mayores por número, los Menores construidos con rango +
+// palo (ej. "Sota de Copas"). Ver lib/nombreCarta.ts.
+export interface NombresPack {
+  mayores: Record<number, string>; // 0–21 → nombre del Arcano Mayor
+  palos: Record<Palo, string>;
+  rangos: Record<RangoMenor, string>;
+  elementos: Record<Elemento, string>;
+}

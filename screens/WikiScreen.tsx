@@ -1,32 +1,78 @@
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import CartaImagen from '../components/CartaImagen';
 import MarcoDorado from '../components/MarcoDorado';
+import { CARTAS } from '../content/cartas/meta';
+import type { CartaMeta, Palo } from '../content/types';
+import { useCartas } from '../hooks/useCartas';
 import { useTextos } from '../hooks/useTextos';
+import { nombreDeCarta } from '../lib/nombreCarta';
 import type { RootStackParamList } from '../navigation/types';
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Wiki'>;
 };
 
-// Stub de Fase 1: la Wiki (aprender cada carta y su significado) es el
-// diferenciador del producto y se construye en la Fase 3, sobre el modelo de
-// datos de las 78 cartas de la Fase 2.
+const COLUMNAS = 3;
+const PADDING = 20;
+const GAP = 12;
+const PALOS: Palo[] = ['bastos', 'copas', 'espadas', 'oros'];
+
 export default function WikiScreen({ navigation }: Props) {
   const t = useTextos();
+  const { nombres, wiki } = useCartas();
+  const { width } = useWindowDimensions();
+
+  // Ancho de cada miniatura para una grilla de 3 columnas. Queda bien por
+  // debajo del ancho nativo del arte (480 px), así que nunca se agranda.
+  const anchoItem = (width - PADDING * 2 - GAP * (COLUMNAS - 1)) / COLUMNAS;
+
+  const mayores = CARTAS.filter((c) => c.arcano === 'mayor');
+  const secciones: { titulo: string; cartas: CartaMeta[] }[] = [
+    { titulo: t.wiki.arcanosMayores, cartas: mayores },
+    ...PALOS.map((palo) => ({
+      titulo: nombres.palos[palo],
+      cartas: CARTAS.filter((c) => c.palo === palo),
+    })),
+  ];
+
+  const renderCarta = (meta: CartaMeta) => {
+    const nombre = nombreDeCarta(meta, nombres, wiki[meta.id]?.nombre);
+    return (
+      <Pressable
+        key={meta.id}
+        style={[styles.item, { width: anchoItem }]}
+        onPress={() => navigation.navigate('WikiDetalle', { cartaId: meta.id })}
+      >
+        <CartaImagen meta={meta} width={anchoItem} />
+        <Text style={styles.itemNombre} numberOfLines={2}>
+          {nombre}
+        </Text>
+      </Pressable>
+    );
+  };
 
   return (
     <View style={styles.background}>
       <MarcoDorado />
       <SafeAreaView style={styles.safeArea}>
-        <View style={styles.contenido}>
+        <View style={styles.encabezado}>
           <Text style={styles.titulo}>{t.wiki.titulo}</Text>
-          <Text style={styles.texto}>{t.wiki.enConstruccion}</Text>
+          <Pressable style={styles.botonCerrar} onPress={() => navigation.goBack()} hitSlop={12}>
+            <Text style={styles.botonCerrarTexto}>✕</Text>
+          </Pressable>
         </View>
-        <Pressable style={styles.botonVolver} onPress={() => navigation.goBack()}>
-          <Text style={styles.botonVolverTexto}>{t.wiki.volver}</Text>
-        </Pressable>
+
+        <ScrollView contentContainerStyle={styles.scroll}>
+          {secciones.map((seccion) => (
+            <View key={seccion.titulo} style={styles.seccion}>
+              <Text style={styles.seccionTitulo}>{seccion.titulo}</Text>
+              <View style={styles.grilla}>{seccion.cartas.map(renderCarta)}</View>
+            </View>
+          ))}
+        </ScrollView>
       </SafeAreaView>
     </View>
   );
@@ -41,38 +87,60 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 14,
     paddingBottom: 14,
-    paddingHorizontal: 32,
   },
-  contenido: {
-    flex: 1,
-    justifyContent: 'center',
+  encabezado: {
+    flexDirection: 'row',
     alignItems: 'center',
-    gap: 18,
+    justifyContent: 'space-between',
+    paddingHorizontal: 24,
+    paddingTop: 6,
   },
   titulo: {
     color: '#F5EFE0',
-    fontSize: 30,
+    fontSize: 24,
     fontWeight: '700',
   },
-  texto: {
-    color: 'rgba(255, 255, 255, 0.75)',
+  botonCerrar: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: 'rgba(255, 255, 255, 0.12)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  botonCerrarTexto: {
+    color: '#fff',
     fontSize: 16,
-    lineHeight: 24,
+    fontWeight: '700',
+  },
+  scroll: {
+    paddingHorizontal: PADDING,
+    paddingTop: 12,
+    paddingBottom: 28,
+  },
+  seccion: {
+    marginTop: 20,
+  },
+  seccionTitulo: {
+    color: '#D9B94A',
+    fontSize: 14,
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+    marginBottom: 12,
+  },
+  grilla: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: GAP,
+  },
+  item: {
+    marginBottom: 4,
+  },
+  itemNombre: {
+    color: 'rgba(245, 239, 224, 0.9)',
+    fontSize: 13,
     textAlign: 'center',
-  },
-  botonVolver: {
-    alignSelf: 'center',
-    borderRadius: 14,
-    borderWidth: 1,
-    borderColor: 'rgba(201, 162, 39, 0.9)',
-    backgroundColor: 'rgba(15, 10, 4, 0.5)',
-    paddingVertical: 14,
-    paddingHorizontal: 32,
-    marginBottom: 8,
-  },
-  botonVolverTexto: {
-    color: '#F5EFE0',
-    fontSize: 16,
-    fontWeight: '600',
+    marginTop: 6,
   },
 });
