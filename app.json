@@ -41,7 +41,7 @@
         "expo-font",
         {
           "fonts": [
-            "./assets/fonts/MetalGothic-DemoVersion-Regular.ttf"
+            "./assets/fonts/Celtica-Bold.ttf"
           ]
         }
       ],

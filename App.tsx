@@ -39,7 +39,7 @@ export default function App() {
   const [nombreGuardado, setNombreGuardado] = useState<string | null>(null);
   const [nombreListo, setNombreListo] = useState(false);
   const [fuentesListas, fuenteError] = useFonts({
-    [FUENTE_TITULOS]: require('./assets/fonts/MetalGothic-DemoVersion-Regular.ttf'),
+    [FUENTE_TITULOS]: require('./assets/fonts/Celtica-Bold.ttf'),
   });
 
   useEffect(() => {

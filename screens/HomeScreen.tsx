@@ -78,7 +78,7 @@ export default function HomeScreen({ navigation }: Props) {
           </Pressable>
         </View>
 
-        <Text style={styles.titulo}>Tarot</Text>
+        <Text style={styles.titulo}>TAROT</Text>
 
         <View style={styles.espaciador} />
 
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
     fontStyle: 'normal',
     color: MARFIL,
-    fontSize: 112,
+    fontSize: 76,
     textAlign: 'center',
     marginTop: 12,
     // Halo bordó reforzado para despegar el marfil del fondo cálido.
