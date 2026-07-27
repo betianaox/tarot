@@ -17,7 +17,7 @@ type Props = {
 };
 
 const COLUMNAS = 3;
-const PADDING = 20;
+const PADDING = 24;
 const GAP = 12;
 const PALOS: Palo[] = ['bastos', 'copas', 'espadas', 'oros'];
 
@@ -84,15 +84,15 @@ const styles = StyleSheet.create({
   },
   safeArea: {
     flex: 1,
-    paddingTop: 14,
+    paddingTop: 18,
     paddingBottom: 14,
   },
   encabezado: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 24,
-    paddingTop: 6,
+    paddingHorizontal: 30,
+    paddingTop: 10,
   },
   titulo: {
     color: '#F5EFE0',

@@ -157,10 +157,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
+    // Home no tiene marco dorado: padding chico, pegado al borde de pantalla.
+    paddingTop: 10,
+    paddingHorizontal: 24,
   },
   botonAjustes: {
-    marginTop: 10,
-    marginRight: 28,
     width: 40,
     height: 40,
     borderRadius: 20,

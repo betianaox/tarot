@@ -12,10 +12,10 @@ export default function ContadorGemas() {
 }
 
 const styles = StyleSheet.create({
+  // Sin márgenes: el contenedor padre decide dónde va (así se le da el aire
+  // desde el borde dorado en cada pantalla).
   contador: {
     alignSelf: 'flex-start',
-    marginTop: 10,
-    marginLeft: 28,
     backgroundColor: 'rgba(0, 0, 0, 0.35)',
     borderRadius: 20,
     paddingVertical: 8,

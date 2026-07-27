@@ -5,9 +5,11 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import BotonCerrar from '../components/BotonCerrar';
 import CartaImagen from '../components/CartaImagen';
+import ContadorGemas from '../components/ContadorGemas';
 import MarcoDorado from '../components/MarcoDorado';
 import { COLORES } from '../constants/colores';
 import { CARTA_POR_ID } from '../content/cartas/meta';
+import { useTextos } from '../hooks/useTextos';
 import { tirarCruz, type CartaTirada } from '../lib/tirarCruz';
 import type { RootStackParamList } from '../navigation/types';
 
@@ -17,16 +19,22 @@ type Props = {
 
 // Relación alto/ancho del arte (480×860).
 const RATIO_H = 860 / 480;
-// Alto reservado para el encabezado (✕) y el pie (botones), en dp.
+// Aire desde el marco dorado (pantalla con borde → más separación). Manda el
+// ancho: este valor define cuánto respiran las cartas desde el borde.
+const AIRE = 36;
+// Alturas reservadas, en dp: encabezado (gemas/✕), pie (botones) y respiros.
 const ALTO_ENCABEZADO = 52;
-const ALTO_PIE = 92;
+const ALTO_PIE = 66;
+const RESPIRO = 16;
 // Cadencia de la animación de entrada.
 const PASO_MS = 170;
 
 export default function PreguntaScreen({ navigation }: Props) {
+  const t = useTextos();
   const insets = useSafeAreaInsets();
   const { width, height } = useWindowDimensions();
-  const [cartas, setCartas] = useState<CartaTirada[]>(() => tirarCruz());
+  // Un reparto por entrada a la pantalla (una tirada por pregunta).
+  const [cartas] = useState<CartaTirada[]>(() => tirarCruz());
 
   // Una animación por slot (0=pos1 … 4=pos5). El orden del array define el
   // orden de entrada: 1→2→3→4→5.
@@ -43,18 +51,15 @@ export default function PreguntaScreen({ navigation }: Props) {
   }, [cartas, anims]);
 
   // Tamaño de carta: el mayor que entre respetando ancho (3 columnas) y alto
-  // (3 filas). Proporcional para adaptarse a distintas resoluciones.
+  // (3 filas), dejando lugar para encabezado y pie. Proporcional/responsive.
   const gap = Math.round(width * 0.022);
-  const padH = 16;
-  const anchoDisp = width - padH * 2;
+  const anchoDisp = width - AIRE * 2;
   const altoDisp =
-    height - insets.top - insets.bottom - ALTO_ENCABEZADO - ALTO_PIE;
+    height - insets.top - insets.bottom - ALTO_ENCABEZADO - ALTO_PIE - RESPIRO * 2;
   const anchoPorAncho = (anchoDisp - gap * 2) / 3;
   const anchoPorAlto = (altoDisp - gap * 2) / (3 * RATIO_H);
   const cartaW = Math.floor(Math.min(anchoPorAncho, anchoPorAlto));
   const cartaH = cartaW * RATIO_H;
-
-  const verLectura = () => navigation.navigate('Lectura', { cartas });
 
   const renderCarta = (slot: number) => {
     const carta = cartas[slot];
@@ -69,9 +74,7 @@ export default function PreguntaScreen({ navigation }: Props) {
           ],
         }}
       >
-        <View
-          style={carta.posicion === 'invertida' ? styles.invertida : undefined}
-        >
+        <View style={carta.posicion === 'invertida' ? styles.invertida : undefined}>
           <CartaImagen meta={meta} width={cartaW} radio={6} />
         </View>
       </Animated.View>
@@ -85,32 +88,35 @@ export default function PreguntaScreen({ navigation }: Props) {
       <MarcoDorado />
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.encabezado}>
+          <ContadorGemas />
           <BotonCerrar onPress={() => navigation.goBack()} />
         </View>
 
-        <View style={styles.centro}>
+        {/* La cruz arriba. */}
+        <View style={styles.cruz}>
           <View style={{ width: cartaW * 3 + gap * 2 }}>
-            {/* Arriba de la 2: slot 3 (pos4). */}
             <View style={[styles.filaCentrada, filaAltura]}>{renderCarta(3)}</View>
-            {/* Renglón 1-2-3. */}
             <View style={[styles.filaRenglon, filaAltura, { gap }]}>
               {renderCarta(0)}
               {renderCarta(1)}
               {renderCarta(2)}
             </View>
-            {/* Abajo de la 2: slot 4 (pos5). Sin margen inferior. */}
-            <View style={[styles.filaCentrada, { height: cartaH }]}>
-              {renderCarta(4)}
-            </View>
+            <View style={[styles.filaCentrada, { height: cartaH }]}>{renderCarta(4)}</View>
           </View>
         </View>
 
+        <View style={styles.espaciador} />
+
+        {/* Un solo botón al pie: ver la lectura (acción principal). "Hacer otra
+            pregunta" vive en la pantalla de lectura, no acá. */}
         <View style={styles.pie}>
-          <Pressable style={styles.botonLectura} onPress={verLectura}>
-            <Text style={styles.botonLecturaTexto}>Ver la lectura</Text>
-          </Pressable>
-          <Pressable onPress={() => setCartas(tirarCruz())} hitSlop={8}>
-            <Text style={styles.barajar}>Barajar de nuevo</Text>
+          <Pressable
+            style={[styles.boton, styles.botonEnfasis]}
+            onPress={() => navigation.navigate('Lectura', { cartas })}
+          >
+            <Text style={styles.botonTexto} numberOfLines={1}>
+              {t.pregunta.verLectura}
+            </Text>
           </Pressable>
         </View>
       </SafeAreaView>
@@ -125,20 +131,24 @@ const styles = StyleSheet.create({
   },
   safeArea: {
     flex: 1,
-    paddingTop: 14,
-    paddingBottom: 14,
-    paddingHorizontal: 16,
+    paddingTop: 32,
+    paddingBottom: RESPIRO,
   },
   encabezado: {
     height: ALTO_ENCABEZADO,
     flexDirection: 'row',
-    justifyContent: 'flex-end',
-    paddingHorizontal: 8,
+    justifyContent: 'space-between',
+    // Arriba ambos (las gemas usan alignSelf flex-start): así la ✕ queda a la
+    // misma altura que el contador y no desalineada.
+    alignItems: 'flex-start',
+    paddingHorizontal: AIRE,
   },
-  centro: {
-    flex: 1,
-    justifyContent: 'center',
+  cruz: {
     alignItems: 'center',
+    marginTop: RESPIRO,
+  },
+  espaciador: {
+    flex: 1,
   },
   filaCentrada: {
     alignItems: 'center',
@@ -155,25 +165,24 @@ const styles = StyleSheet.create({
     height: ALTO_PIE,
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 10,
   },
-  botonLectura: {
-    backgroundColor: 'rgba(15, 10, 4, 0.66)',
-    borderRadius: 16,
+  boton: {
+    borderRadius: 14,
     borderWidth: 1,
-    borderColor: COLORES.oro,
-    paddingVertical: 15,
-    paddingHorizontal: 40,
+    paddingVertical: 14,
+    paddingHorizontal: 48,
     alignItems: 'center',
+    justifyContent: 'center',
   },
-  botonLecturaTexto: {
+  botonEnfasis: {
+    backgroundColor: 'rgba(201, 162, 39, 0.18)',
+    borderColor: COLORES.oro,
+  },
+  botonTexto: {
     color: COLORES.marfil,
-    fontSize: 17,
+    fontSize: 15,
     fontWeight: '600',
-    letterSpacing: 0.3,
-  },
-  barajar: {
-    color: 'rgba(245, 239, 224, 0.5)',
-    fontSize: 13,
+    textAlign: 'center',
+    letterSpacing: 0.2,
   },
 });
