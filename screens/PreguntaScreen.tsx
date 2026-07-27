@@ -4,9 +4,10 @@ import { Animated, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import BotonCerrar from '../components/BotonCerrar';
-import BotonPrincipal from '../components/BotonPrincipal';
+import BotonIcono from '../components/BotonIcono';
 import CartaImagen from '../components/CartaImagen';
 import ContadorGemas from '../components/ContadorGemas';
+import { IconoLectura } from '../components/iconos';
 import MarcoDorado from '../components/MarcoDorado';
 import { COLORES } from '../constants/colores';
 import { LAYOUT } from '../constants/layout';
@@ -113,10 +114,12 @@ export default function PreguntaScreen({ navigation }: Props) {
         {/* Un solo botón al pie: ver la lectura (acción principal). "Hacer otra
             pregunta" vive en la pantalla de lectura, no acá. */}
         <View style={styles.pie}>
-          <BotonPrincipal
-            etiqueta={t.pregunta.verLectura}
+          <BotonIcono
+            accessibilityLabel={t.pregunta.verLectura}
             onPress={() => navigation.navigate('Lectura', { cartas })}
-          />
+          >
+            <IconoLectura />
+          </BotonIcono>
         </View>
       </SafeAreaView>
     </View>

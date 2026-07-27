@@ -3,8 +3,10 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import BotonIcono from '../components/BotonIcono';
 import BotonPrincipal from '../components/BotonPrincipal';
 import ContadorGemas from '../components/ContadorGemas';
+import { IconoTirada } from '../components/iconos';
 import MarcoDorado from '../components/MarcoDorado';
 import { COLORES } from '../constants/colores';
 import { LAYOUT } from '../constants/layout';
@@ -66,11 +68,19 @@ export default function LecturaScreen({ navigation }: Props) {
             />
           </View>
 
-          {/* Botón abajo. */}
-          <BotonPrincipal
-            etiqueta={t.pregunta.hacerOtra}
-            onPress={() => navigation.navigate('Pregunta')}
-          />
+          {/* Abajo: volver a la tirada (ícono) + hacer otra pregunta. */}
+          <View style={styles.pie}>
+            <BotonIcono
+              accessibilityLabel={t.pregunta.verTirada}
+              onPress={() => navigation.goBack()}
+            >
+              <IconoTirada />
+            </BotonIcono>
+            <BotonPrincipal
+              etiqueta={t.pregunta.hacerOtra}
+              onPress={() => navigation.navigate('Pregunta')}
+            />
+          </View>
         </View>
       </SafeAreaView>
     </View>
@@ -129,5 +139,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     textAlign: 'center',
+  },
+  pie: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 14,
   },
 });

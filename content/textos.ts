@@ -21,6 +21,7 @@ export interface Textos {
     tirar: string;
     hacerOtra: string;
     verLectura: string;
+    verTirada: string;
     hintCorta: string;
   };
   wiki: {
@@ -80,6 +81,7 @@ const es: Textos = {
     tirar: 'Tirar las cartas',
     hacerOtra: 'Hacer otra pregunta',
     verLectura: 'Ver lectura',
+    verTirada: 'Volver a la tirada',
     hintCorta: 'Escribe una pregunta un poco más larga para poder leerla.',
   },
   wiki: {
@@ -144,6 +146,7 @@ const en: Textos = {
     tirar: 'Draw the cards',
     hacerOtra: 'Ask another question',
     verLectura: 'View reading',
+    verTirada: 'Back to the spread',
     hintCorta: 'Write a slightly longer question so we can read it.',
   },
   wiki: {
@@ -208,6 +211,7 @@ const pt: Textos = {
     tirar: 'Tirar as cartas',
     hacerOtra: 'Fazer outra pergunta',
     verLectura: 'Ver leitura',
+    verTirada: 'Voltar à tiragem',
     hintCorta: 'Escreva uma pergunta um pouco mais longa para podermos lê-la.',
   },
   wiki: {
@@ -272,6 +276,7 @@ const it: Textos = {
     tirar: 'Estrai le carte',
     hacerOtra: "Fai un'altra domanda",
     verLectura: 'Vedi lettura',
+    verTirada: 'Torna alla stesa',
     hintCorta: "Scrivi una domanda un po' più lunga per poterla leggere.",
   },
   wiki: {
