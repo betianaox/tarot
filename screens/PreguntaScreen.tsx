@@ -1,9 +1,10 @@
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useEffect, useRef, useState } from 'react';
-import { Animated, Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { Animated, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import BotonCerrar from '../components/BotonCerrar';
+import BotonPrincipal from '../components/BotonPrincipal';
 import CartaImagen from '../components/CartaImagen';
 import ContadorGemas from '../components/ContadorGemas';
 import MarcoDorado from '../components/MarcoDorado';
@@ -90,7 +91,8 @@ export default function PreguntaScreen({ navigation }: Props) {
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.encabezado}>
           <ContadorGemas />
-          <BotonCerrar onPress={() => navigation.goBack()} />
+          {/* Cierre explícito a la Home: siempre hay salida de la tirada. */}
+          <BotonCerrar onPress={() => navigation.popToTop()} />
         </View>
 
         {/* La cruz arriba. */}
@@ -111,14 +113,10 @@ export default function PreguntaScreen({ navigation }: Props) {
         {/* Un solo botón al pie: ver la lectura (acción principal). "Hacer otra
             pregunta" vive en la pantalla de lectura, no acá. */}
         <View style={styles.pie}>
-          <Pressable
-            style={[styles.boton, styles.botonEnfasis]}
+          <BotonPrincipal
+            etiqueta={t.pregunta.verLectura}
             onPress={() => navigation.navigate('Lectura', { cartas })}
-          >
-            <Text style={styles.botonTexto} numberOfLines={1}>
-              {t.pregunta.verLectura}
-            </Text>
-          </Pressable>
+          />
         </View>
       </SafeAreaView>
     </View>
@@ -166,24 +164,5 @@ const styles = StyleSheet.create({
     height: ALTO_PIE,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  boton: {
-    borderRadius: 14,
-    borderWidth: 1,
-    paddingVertical: 14,
-    paddingHorizontal: 48,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  botonEnfasis: {
-    backgroundColor: 'rgba(201, 162, 39, 0.18)',
-    borderColor: COLORES.oro,
-  },
-  botonTexto: {
-    color: COLORES.marfil,
-    fontSize: 15,
-    fontWeight: '600',
-    textAlign: 'center',
-    letterSpacing: 0.2,
   },
 });
