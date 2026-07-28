@@ -9,7 +9,7 @@ export interface CartaTirada {
 }
 
 // Las invertidas salen menos seguido, para que no aparezcan demasiadas juntas.
-const PROB_INVERTIDA = 0.25;
+const PROB_INVERTIDA = 0.15;
 
 // Reparte las 5 cartas de la cruz: únicas y en orden de slot
 // (0=pos1, 1=pos2, 2=pos3, 3=pos4 arriba, 4=pos5 abajo). `aleatorio` se

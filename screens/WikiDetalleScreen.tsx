@@ -4,6 +4,8 @@ import { ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-n
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import BotonCerrar from '../components/BotonCerrar';
+import BotonVoz from '../components/BotonVoz';
+import CartaAmpliable from '../components/CartaAmpliable';
 import CartaImagen from '../components/CartaImagen';
 import MarcoDorado from '../components/MarcoDorado';
 import { COLORES } from '../constants/colores';
@@ -28,6 +30,18 @@ export default function WikiDetalleScreen({ navigation, route }: Props) {
   const ficha = wiki[meta.id];
   const nombre = nombreDeCarta(meta, nombres, ficha?.nombre);
 
+  // Lo que lee el TTS: el nombre y los significados de la ficha (sin las listas
+  // de palabras clave, que sueltas suenan raras). Solo hay algo para leer si la
+  // ficha está escrita.
+  const textoFicha = ficha
+    ? [
+        nombre,
+        `${t.wiki.derecho}. ${ficha.significado.normal}`,
+        `${t.wiki.invertido}. ${ficha.significado.invertida}`,
+        `${t.wiki.simbolismo}. ${ficha.simbolismo}`,
+      ].join('\n\n')
+    : '';
+
   // Cap del ancho para no superar el 100% del arte (480 px nativos).
   const anchoCarta = Math.min(width * 0.5, 160);
 
@@ -36,12 +50,16 @@ export default function WikiDetalleScreen({ navigation, route }: Props) {
       <MarcoDorado />
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.encabezado}>
+          {/* Escuchar la ficha (solo si hay ficha escrita); se corta al salir. */}
+          {ficha ? <BotonVoz texto={textoFicha} /> : <View />}
           <BotonCerrar onPress={() => navigation.goBack()} />
         </View>
 
         <ScrollView contentContainerStyle={styles.scroll}>
           <View style={styles.cabecera}>
-            <CartaImagen meta={meta} width={anchoCarta} radio={10} />
+            <CartaAmpliable meta={meta}>
+              <CartaImagen meta={meta} width={anchoCarta} radio={10} />
+            </CartaAmpliable>
             <Text style={styles.nombre}>{nombre}</Text>
           </View>
 
@@ -119,7 +137,7 @@ const styles = StyleSheet.create({
   encabezado: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     paddingHorizontal: LAYOUT.aire,
   },
   scroll: {

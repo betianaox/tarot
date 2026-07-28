@@ -11,15 +11,16 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { COLORES } from './constants/colores';
 import { FUENTE_TITULOS } from './constants/tipografia';
+import { DesbloqueosProvider } from './context/DesbloqueosContext';
 import { GemasProvider } from './context/GemasContext';
 import { IdiomaProvider } from './context/IdiomaContext';
-import { UsuarioProvider, cargarNombreGuardado } from './context/UsuarioContext';
 import type { RootStackParamList } from './navigation/types';
 import AjustesScreen from './screens/AjustesScreen';
 import ConsejoDelDiaScreen from './screens/ConsejoDelDiaScreen';
 import HomeScreen from './screens/HomeScreen';
 import LecturaScreen from './screens/LecturaScreen';
 import PreguntaScreen from './screens/PreguntaScreen';
+import TiradaScreen from './screens/TiradaScreen';
 import WikiScreen from './screens/WikiScreen';
 import WikiDetalleScreen from './screens/WikiDetalleScreen';
 
@@ -37,8 +38,6 @@ const TEMA_OSCURO = {
 
 export default function App() {
   const [assetsListos, setAssetsListos] = useState(false);
-  const [nombreGuardado, setNombreGuardado] = useState<string | null>(null);
-  const [nombreListo, setNombreListo] = useState(false);
   const [fuentesListas, fuenteError] = useFonts({
     [FUENTE_TITULOS]: require('./assets/fonts/Celtica-Bold.ttf'),
   });
@@ -56,12 +55,9 @@ export default function App() {
     Asset.loadAsync(require('./assets/bg-home.webp'))
       .catch(() => {})
       .finally(() => setAssetsListos(true));
-    cargarNombreGuardado()
-      .then(setNombreGuardado)
-      .finally(() => setNombreListo(true));
   }, []);
 
-  const isReady = assetsListos && nombreListo && (fuentesListas || !!fuenteError);
+  const isReady = assetsListos && (fuentesListas || !!fuenteError);
 
   const onLayout = useCallback(() => {
     if (isReady) {
@@ -75,14 +71,15 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <UsuarioProvider nombreInicial={nombreGuardado}>
-        <IdiomaProvider>
+      <IdiomaProvider>
           <GemasProvider>
+            <DesbloqueosProvider>
             <View style={{ flex: 1, backgroundColor: COLORES.fondo }} onLayout={onLayout}>
               <NavigationContainer theme={TEMA_OSCURO}>
                 <Stack.Navigator screenOptions={{ headerShown: false }}>
                   <Stack.Screen name="Home" component={HomeScreen} />
                   <Stack.Screen name="Pregunta" component={PreguntaScreen} />
+                  <Stack.Screen name="Tirada" component={TiradaScreen} />
                   <Stack.Screen name="Lectura" component={LecturaScreen} />
                   <Stack.Screen name="Wiki" component={WikiScreen} />
                   <Stack.Screen name="WikiDetalle" component={WikiDetalleScreen} />
@@ -92,9 +89,9 @@ export default function App() {
               </NavigationContainer>
               <StatusBar style="light" />
             </View>
+            </DesbloqueosProvider>
           </GemasProvider>
-        </IdiomaProvider>
-      </UsuarioProvider>
+      </IdiomaProvider>
     </SafeAreaProvider>
   );
 }

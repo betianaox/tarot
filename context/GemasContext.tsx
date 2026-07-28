@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useRef, useState, type ReactNode 
 
 import { fechaDeHoy } from '../lib/fecha';
 
-const GEMAS_POR_DIA = 3;
+const GEMAS_POR_DIA = 2;
 const CLAVE_ALMACENAMIENTO = 'tarot:gemas';
 
 interface GemasGuardadas {

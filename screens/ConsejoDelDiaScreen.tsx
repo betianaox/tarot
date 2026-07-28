@@ -14,6 +14,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import BotonCerrar from '../components/BotonCerrar';
+import CartaAmpliable from '../components/CartaAmpliable';
 import CartaImagen from '../components/CartaImagen';
 import MarcoDorado from '../components/MarcoDorado';
 import { COLORES } from '../constants/colores';
@@ -112,22 +113,24 @@ export default function ConsejoDelDiaScreen({ navigation }: Props) {
 
         {!cargando && elegida && (
           <ScrollView contentContainerStyle={styles.resultado}>
-            <View style={{ width: anchoCarta, height: altoCarta }}>
-              <Animated.View
-                style={[styles.cara, { transform: [{ perspective: 900 }, { rotateY: rotDorso }] }]}
-              >
-                <Image
-                  source={DORSO}
-                  style={{ width: anchoCarta, height: altoCarta, borderRadius: 10 }}
-                  resizeMode="cover"
-                />
-              </Animated.View>
-              <Animated.View
-                style={[styles.cara, { transform: [{ perspective: 900 }, { rotateY: rotFrente }] }]}
-              >
-                <CartaImagen meta={CARTA_POR_ID[elegida]} width={anchoCarta} radio={10} />
-              </Animated.View>
-            </View>
+            <CartaAmpliable meta={CARTA_POR_ID[elegida]}>
+              <View style={{ width: anchoCarta, height: altoCarta }}>
+                <Animated.View
+                  style={[styles.cara, { transform: [{ perspective: 900 }, { rotateY: rotDorso }] }]}
+                >
+                  <Image
+                    source={DORSO}
+                    style={{ width: anchoCarta, height: altoCarta, borderRadius: 10 }}
+                    resizeMode="cover"
+                  />
+                </Animated.View>
+                <Animated.View
+                  style={[styles.cara, { transform: [{ perspective: 900 }, { rotateY: rotFrente }] }]}
+                >
+                  <CartaImagen meta={CARTA_POR_ID[elegida]} width={anchoCarta} radio={10} />
+                </Animated.View>
+              </View>
+            </CartaAmpliable>
 
             <Animated.View style={[styles.bloqueConsejo, { opacity: opacidadConsejo }]}>
               <Text style={styles.nombre}>

@@ -22,25 +22,3 @@ export function IconoTirada({ size = 26, color = COLORES.marfil }: IconoProps) {
     </Svg>
   );
 }
-
-// Ícono de la lectura: una página con renglones de texto. Representa "ir a la
-// lectura". Es el recíproco del ícono de la tirada.
-export function IconoLectura({ size = 26, color = COLORES.marfil }: IconoProps) {
-  return (
-    <Svg width={size} height={size} viewBox="0 0 24 24">
-      <Rect
-        x={5}
-        y={3.5}
-        width={14}
-        height={17}
-        rx={2}
-        stroke={color}
-        strokeWidth={1.6}
-        fill="none"
-      />
-      <Rect x={8} y={7.5} width={8} height={1.6} rx={0.8} fill={color} />
-      <Rect x={8} y={11.2} width={8} height={1.6} rx={0.8} fill={color} />
-      <Rect x={8} y={14.9} width={5} height={1.6} rx={0.8} fill={color} />
-    </Svg>
-  );
-}

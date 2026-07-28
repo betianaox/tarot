@@ -7,13 +7,23 @@ import { COLORES } from '../constants/colores';
 export default function BotonPrincipal({
   etiqueta,
   onPress,
+  ajustable = false,
 }: {
   etiqueta: string;
   onPress: () => void;
+  // Cuando comparte fila con otro botón y la etiqueta puede ser larga (o la
+  // letra del sistema grande): deja que el botón encoja dentro del espacio
+  // disponible y que el texto se achique para entrar, en vez de desbordar.
+  ajustable?: boolean;
 }) {
   return (
-    <Pressable style={styles.boton} onPress={onPress}>
-      <Text style={styles.texto} numberOfLines={1}>
+    <Pressable style={[styles.boton, ajustable && styles.botonAjustable]} onPress={onPress}>
+      <Text
+        style={styles.texto}
+        numberOfLines={1}
+        adjustsFontSizeToFit={ajustable}
+        minimumFontScale={0.6}
+      >
         {etiqueta}
       </Text>
     </Pressable>
@@ -32,6 +42,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 44,
     alignItems: 'center',
     alignSelf: 'center',
+  },
+  // Permite que encoja dentro de una fila con otro botón, para no desbordar el
+  // padding lateral y pegarse al marco.
+  botonAjustable: {
+    flexShrink: 1,
   },
   texto: {
     color: COLORES.marfil,

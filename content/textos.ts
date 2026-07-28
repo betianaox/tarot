@@ -9,10 +9,6 @@ export interface Textos {
     pregunta: string;
     wiki: string;
     consejoDelDia: string;
-    bienvenidoTitulo: string;
-    bienvenidoPregunta: string;
-    nombrePlaceholder: string;
-    continuar: string;
   };
   pregunta: {
     titulo: string;
@@ -37,6 +33,7 @@ export interface Textos {
     numero: string;
     elemento: string;
     proximamente: string;
+    desbloquear: string;
   };
   overlaySinGemas: {
     titulo: string;
@@ -71,17 +68,13 @@ const es: Textos = {
     pregunta: 'Pregunta',
     wiki: 'Aprende',
     consejoDelDia: 'Consejo del día',
-    bienvenidoTitulo: 'Bienvenido a Tarot',
-    bienvenidoPregunta: '¿Cómo te llamas?',
-    nombrePlaceholder: 'Tu nombre',
-    continuar: 'Continuar',
   },
   pregunta: {
     titulo: '¿Sobre qué quieres preguntar?',
     chips: { amor: 'Amor', trabajo: 'Trabajo', dinero: 'Dinero', general: 'General' },
     placeholder: 'Escribe tu pregunta...',
     tirar: 'Tirar las cartas',
-    hacerOtra: 'Hacer otra pregunta',
+    hacerOtra: 'Nueva pregunta',
     verLectura: 'Ver lectura',
     verTirada: 'Volver a la tirada',
     hintCorta: 'Escribe una pregunta un poco más larga para poder leerla.',
@@ -99,6 +92,7 @@ const es: Textos = {
     numero: 'Número',
     elemento: 'Elemento',
     proximamente: 'Contenido próximamente',
+    desbloquear: 'Mira un video y desbloquea {seccion}',
   },
   overlaySinGemas: {
     titulo: 'Te quedan 0 gemas',
@@ -138,17 +132,13 @@ const en: Textos = {
     pregunta: 'Ask a question',
     wiki: 'Learn',
     consejoDelDia: 'Daily advice',
-    bienvenidoTitulo: 'Welcome to Tarot',
-    bienvenidoPregunta: "What's your name?",
-    nombrePlaceholder: 'Your name',
-    continuar: 'Continue',
   },
   pregunta: {
     titulo: 'What would you like to ask about?',
     chips: { amor: 'Love', trabajo: 'Work', dinero: 'Money', general: 'General' },
     placeholder: 'Type your question...',
     tirar: 'Draw the cards',
-    hacerOtra: 'Ask another question',
+    hacerOtra: 'New question',
     verLectura: 'View reading',
     verTirada: 'Back to the spread',
     hintCorta: 'Write a slightly longer question so we can read it.',
@@ -166,6 +156,7 @@ const en: Textos = {
     numero: 'Number',
     elemento: 'Element',
     proximamente: 'Content coming soon',
+    desbloquear: 'Watch a video to unlock {seccion}',
   },
   overlaySinGemas: {
     titulo: 'You have 0 gems left',
@@ -205,17 +196,13 @@ const pt: Textos = {
     pregunta: 'Fazer uma pergunta',
     wiki: 'Aprenda',
     consejoDelDia: 'Conselho do dia',
-    bienvenidoTitulo: 'Bem-vindo ao Tarot',
-    bienvenidoPregunta: 'Como você se chama?',
-    nombrePlaceholder: 'Seu nome',
-    continuar: 'Continuar',
   },
   pregunta: {
     titulo: 'Sobre o que você quer perguntar?',
     chips: { amor: 'Amor', trabajo: 'Trabalho', dinero: 'Dinheiro', general: 'Geral' },
     placeholder: 'Escreva sua pergunta...',
     tirar: 'Tirar as cartas',
-    hacerOtra: 'Fazer outra pergunta',
+    hacerOtra: 'Nova pergunta',
     verLectura: 'Ver leitura',
     verTirada: 'Voltar à tiragem',
     hintCorta: 'Escreva uma pergunta um pouco mais longa para podermos lê-la.',
@@ -233,6 +220,7 @@ const pt: Textos = {
     numero: 'Número',
     elemento: 'Elemento',
     proximamente: 'Conteúdo em breve',
+    desbloquear: 'Assista a um vídeo e desbloqueie {seccion}',
   },
   overlaySinGemas: {
     titulo: 'Você tem 0 gemas',
@@ -272,17 +260,13 @@ const it: Textos = {
     pregunta: 'Fai una domanda',
     wiki: 'Impara',
     consejoDelDia: 'Consiglio del giorno',
-    bienvenidoTitulo: 'Benvenuto in Tarot',
-    bienvenidoPregunta: 'Come ti chiami?',
-    nombrePlaceholder: 'Il tuo nome',
-    continuar: 'Continua',
   },
   pregunta: {
     titulo: 'Su cosa vuoi fare la domanda?',
     chips: { amor: 'Amore', trabajo: 'Lavoro', dinero: 'Denaro', general: 'Generale' },
     placeholder: 'Scrivi la tua domanda...',
     tirar: 'Estrai le carte',
-    hacerOtra: "Fai un'altra domanda",
+    hacerOtra: 'Nuova domanda',
     verLectura: 'Vedi lettura',
     verTirada: 'Torna alla stesa',
     hintCorta: "Scrivi una domanda un po' più lunga per poterla leggere.",
@@ -300,6 +284,7 @@ const it: Textos = {
     numero: 'Numero',
     elemento: 'Elemento',
     proximamente: 'Contenuto in arrivo',
+    desbloquear: 'Guarda un video e sblocca {seccion}',
   },
   overlaySinGemas: {
     titulo: 'Ti restano 0 gemme',

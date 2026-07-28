@@ -1,42 +1,33 @@
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import type { RouteProp } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import BotonIcono from '../components/BotonIcono';
-import BotonPrincipal from '../components/BotonPrincipal';
+import BotonVoz from '../components/BotonVoz';
 import ContadorGemas from '../components/ContadorGemas';
 import { IconoTirada } from '../components/iconos';
 import MarcoDorado from '../components/MarcoDorado';
 import { COLORES } from '../constants/colores';
 import { LAYOUT } from '../constants/layout';
+import { PARRAFOS_EJEMPLO, TEXTO_LECTURA_DEMO } from '../content/demoLectura';
 import { useTextos } from '../hooks/useTextos';
 import type { RootStackParamList } from '../navigation/types';
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Lectura'>;
+  route: RouteProp<RootStackParamList, 'Lectura'>;
 };
 
 // Espeja la forma de la pantalla de lectura de Runas (pregunta arriba →
-// contenedor de respuesta con scroll y degradé → botón), con los colores de
-// Tarot. El motor de lectura (2 párrafos) se conecta en el próximo paso: por
-// ahora el contenedor muestra un texto de ejemplo para calibrar la forma.
-const PREGUNTA_EJEMPLO = '¿Qué necesito ver de esta situación?';
-// Placeholder de los 3 párrafos, para ver la forma antes de conectar el motor.
-const PARRAFO_1 =
-  'Primer párrafo: la lectura de las tres cartas del renglón, nombrando cada ' +
-  'carta la primera vez y relacionando sus significados con la pregunta.';
-const PARRAFO_2 =
-  'Segundo párrafo: integra esas tres cartas —cómo se combinan y qué dicen ' +
-  'juntas—, ya sin repetir los nombres (como el párrafo integrador de Runas).';
-const PARRAFO_3 =
-  'Tercer párrafo: suma la carta de arriba —lo que la persona tiene en la ' +
-  'cabeza— y la de abajo —el próximo movimiento, el futuro cercano—. Cuando ' +
-  'conectemos el motor, todo esto se arma solo a partir de las cinco cartas y ' +
-  'del análisis de la pregunta.';
-
-export default function LecturaScreen({ navigation }: Props) {
+// contenedor de respuesta con scroll y degradé → botones), con los colores de
+// Tarot. El motor de lectura se conecta en el próximo paso: por ahora el
+// contenedor muestra un texto de ejemplo (ver content/demoLectura).
+export default function LecturaScreen({ navigation, route }: Props) {
   const t = useTextos();
+  const { pregunta } = route.params;
 
   return (
     <View style={styles.background}>
@@ -46,7 +37,7 @@ export default function LecturaScreen({ navigation }: Props) {
         <View style={styles.contenedor}>
           {/* La pregunta arriba (dorada, como los títulos de Runas). */}
           <Text style={styles.pregunta} numberOfLines={3}>
-            {PREGUNTA_EJEMPLO}
+            {pregunta}
           </Text>
 
           {/* Contenedor de respuesta (mismo comportamiento que en Runas). */}
@@ -57,9 +48,11 @@ export default function LecturaScreen({ navigation }: Props) {
               persistentScrollbar
               indicatorStyle="white"
             >
-              <Text style={styles.textoLectura}>{PARRAFO_1}</Text>
-              <Text style={styles.textoLectura}>{PARRAFO_2}</Text>
-              <Text style={styles.textoLectura}>{PARRAFO_3}</Text>
+              {PARRAFOS_EJEMPLO.map((parrafo, indice) => (
+                <Text key={indice} style={styles.textoLectura}>
+                  {parrafo}
+                </Text>
+              ))}
             </ScrollView>
             <LinearGradient
               colors={['rgba(38, 14, 22, 0)', 'rgba(38, 14, 22, 0.6)']}
@@ -68,7 +61,8 @@ export default function LecturaScreen({ navigation }: Props) {
             />
           </View>
 
-          {/* Abajo: volver a la tirada (ícono) + hacer otra pregunta. */}
+          {/* Abajo, tres íconos en fila: volver a la tirada · escuchar · nueva
+              pregunta. */}
           <View style={styles.pie}>
             <BotonIcono
               accessibilityLabel={t.pregunta.verTirada}
@@ -76,10 +70,13 @@ export default function LecturaScreen({ navigation }: Props) {
             >
               <IconoTirada />
             </BotonIcono>
-            <BotonPrincipal
-              etiqueta={t.pregunta.hacerOtra}
+            <BotonVoz texto={TEXTO_LECTURA_DEMO} />
+            <BotonIcono
+              accessibilityLabel={t.pregunta.hacerOtra}
               onPress={() => navigation.navigate('Pregunta')}
-            />
+            >
+              <MaterialCommunityIcons name="crystal-ball" size={26} color={COLORES.marfil} />
+            </BotonIcono>
           </View>
         </View>
       </SafeAreaView>
@@ -144,6 +141,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 14,
+    gap: 18,
   },
 });

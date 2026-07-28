@@ -28,13 +28,24 @@ export function useAnuncioRecompensado() {
 
   const mostrar = useCallback((onRecompensa: () => void) => {
     const anuncio = anuncioRef.current;
+    // La recompensa se OTORGA al cerrar el anuncio (si se ganó), no al ganarla:
+    // EARNED_REWARD llega con el anuncio todavía en pantalla, así que cualquier
+    // animación disparada ahí quedaría tapada. Al esperar al CLOSED, el efecto
+    // (p. ej. el flip de las cartas de la Wiki) se ve al volver a la app.
+    let gano = false;
     const cancelarRecompensa = anuncio.addAdEventListener(
       RewardedAdEventType.EARNED_REWARD,
       () => {
-        onRecompensa();
-        cancelarRecompensa();
+        gano = true;
       },
     );
+    const cancelarCerrado = anuncio.addAdEventListener(AdEventType.CLOSED, () => {
+      cancelarRecompensa();
+      cancelarCerrado();
+      if (gano) {
+        onRecompensa();
+      }
+    });
     anuncio.show();
   }, []);
 

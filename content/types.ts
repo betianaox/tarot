@@ -10,6 +10,22 @@
 // Ejes temáticos de una consulta. Los mismos cuatro mundos que en Runas.
 export type Tema = 'amor' | 'trabajo' | 'dinero' | 'general';
 
+// cerrada = la pregunta busca un resultado o un sí/no ("¿va a volver?",
+// "¿me conviene?"). abierta = busca reflexión ("¿qué necesito ver de esto?").
+// Se detecta por patrones de la pregunta y modula qué apertura/consejo se elige
+// para acompañar la tirada (no cambia el significado de cada carta).
+export type Modo = 'cerrada' | 'abierta';
+
+// Tono con el que la persona formuló la pregunta. Es su estado, no el de la
+// carta: tiñe las piezas que le hablan a ella (aperturas, consejos, eco), nunca
+// los fragmentos que describen el significado de cada carta. 'neutro' es el
+// default y el fallback cuando no hay contenido específico.
+export type Tono = 'preocupacion' | 'impulso' | 'neutro';
+
+// Orientación temporal de la consulta: hacia atrás ("mi ex", "lo que pasó"),
+// hacia adelante ("va a", "conviene") o sin marca temporal fuerte.
+export type Tiempo = 'pasado' | 'presente' | 'futuro';
+
 // Posición en la que sale la carta. Las invertidas tienen significado propio.
 export type Posicion = 'normal' | 'invertida';
 
